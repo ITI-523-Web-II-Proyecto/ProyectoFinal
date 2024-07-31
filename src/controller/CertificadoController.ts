@@ -21,17 +21,17 @@ class CertificadoController {
     }
 
     static create = async (req: Request, res: Response) => {
-        const { token, descripcion, categoria, institucion, año, personaId } = req.body;
+        const { id_certificado, descripcion, categoria, institucion, año, personaId } = req.body;
         const repoCertificado = AppDataSource.getRepository(Certificado);
 
         try {
-            let certificado = await repoCertificado.findOne({ where: { token } });
+            let certificado = await repoCertificado.findOne({ where: { id_certificado } });
             if (certificado) {
                 return res.status(400).json({ message: "Ese certificado ya existe en la base de datos." });
             }
 
             certificado = new Certificado();
-            certificado.token = token;
+            certificado.id_certificado = id_certificado;
             certificado.descripcion = descripcion;
             certificado.categoria = categoria;
             certificado.institucion = institucion;
@@ -62,18 +62,18 @@ class CertificadoController {
 
     static getOne = async (req: Request, res: Response) => {
         try {
-            const token = req.params['token'];
+            const id_certificado = req.params['id_certificado'];
             const repo = AppDataSource.getRepository(Certificado);
 
             try {
-                const certificado = await repo.findOneOrFail({ where: { token, estado: true }, relations: { persona: true } });
+                const certificado = await repo.findOneOrFail({ where: { id_certificado, estado: true }, relations: { persona: true } });
                 return res.status(200).json(certificado);
             } catch (error) {
-                return res.status(404).json({ message: "El certificado con el token indicado no existe en la base de datos." });
+                return res.status(404).json({ message: "El certificado con el ID indicado no existe en la base de datos." });
             }
 
         } catch (error) {
-            return res.status(404).json({ message: "El certificado con el token indicado no existe en la base de datos." });
+            return res.status(404).json({ message: "El certificado con el ID indicado no existe en la base de datos." });
         }
     }
 
@@ -81,14 +81,14 @@ class CertificadoController {
         const { descripcion, categoria, institucion, año, personaId, estado } = req.body;
 
         try {
-            const token = req.params['token'];
+            const id_certificado = req.params['id_certificado'];
             const repo = AppDataSource.getRepository(Certificado);
 
             let certificado;
             try {
-                certificado = await repo.findOneOrFail({ where: { token } });
+                certificado = await repo.findOneOrFail({ where: { id_certificado } });
             } catch (error) {
-                return res.status(404).json({ message: "El certificado con el token indicado no existe en la base de datos." });
+                return res.status(404).json({ message: "El certificado con el ID indicado no existe en la base de datos." });
             }
 
             // Actualiza los campos del certificado
@@ -126,14 +126,14 @@ class CertificadoController {
 
     static delete = async (req: Request, res: Response) => {
         try {
-            const token = req.params['token'];
+            const id_certificado = req.params['id_certificado'];
             const repo = AppDataSource.getRepository(Certificado);
 
             let certificado;
             try {
-                certificado = await repo.findOneOrFail({ where: { token } });
+                certificado = await repo.findOneOrFail({ where: { id_certificado } });
             } catch (error) {
-                return res.status(404).json({ message: "El certificado con el token indicado no existe en la base de datos." });
+                return res.status(404).json({ message: "El certificado con el ID indicado no existe en la base de datos." });
             }
 
             certificado.estado = false;

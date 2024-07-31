@@ -5,7 +5,7 @@ import { IsNotEmpty, IsNumber } from "class-validator";
 @Entity()
 export class Certificado {
     @PrimaryColumn()
-    token: string;
+    id_certificado: string;
 
     @Column({ length: 255, nullable: false })
     @IsNotEmpty({message: 'Por favor indicaar una descripción.'})
