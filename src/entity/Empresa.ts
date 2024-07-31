@@ -32,6 +32,9 @@ export class Empresa {
     @IsNotEmpty({message: 'Debe indicar una contraseña.'})
     contraseña: string;
 
+    @Column({default:1})
+    estado: boolean;
+
     @OneToMany(() => Puesto, puesto => puesto.empresa)
     puestos:Puesto[];
 

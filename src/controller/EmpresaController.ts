@@ -1,23 +1,35 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
-import { validate } from "class-validator";
 import { Empresa } from "../entity/Empresa";
+import { Puesto } from "../entity/Puesto";
+import { ValidationError, validate } from "class-validator";
 
-class EmpresaController {
-    static create = async (req: Request, resp: Response) => {
-        const empresaRepository = AppDataSource.getRepository(Empresa);
+class EmpresasController {
+
+    static getAll = async (req: Request, res: Response) => {
+        try {
+            const repo = AppDataSource.getRepository(Empresa);
+            const listaEmpresas = await repo.find({ where: { estado: true }, relations: { puestos: true } });
+
+            if (listaEmpresas.length == 0) {
+                return res.status(404).json({ message: "No hay datos registrados." });
+            }
+            return res.status(200).json(listaEmpresas);
+        } catch (error) {
+            return res.status(400).json({ message: "Error al acceder a la base de datos." });
+        }
+    }
+
+    static create = async (req: Request, res: Response) => {
+        const { id_empresa, nombre, url, telefono, direccion, contraseña } = req.body;
+        const repoEmpresa = AppDataSource.getRepository(Empresa);
 
         try {
-            // Destructuring
-            const { id_empresa, nombre, url, telefono, direccion, contraseña } = req.body;
-
-            // Validar si la empresa ya existe según el id_empresa
-            let empresa = await empresaRepository.findOne({ where: { id_empresa } });
+            let empresa = await repoEmpresa.findOne({ where: { id_empresa } });
             if (empresa) {
-                return resp.status(400).json({ message: "Esa empresa ya está registrada" });
+                return res.status(400).json({ message: "Esa empresa ya existe en la base de datos." });
             }
 
-            // Instancia de Empresa
             empresa = new Empresa();
             empresa.id_empresa = id_empresa;
             empresa.nombre = nombre;
@@ -25,45 +37,102 @@ class EmpresaController {
             empresa.telefono = telefono;
             empresa.direccion = direccion;
             empresa.contraseña = contraseña;
+            empresa.estado = true;
 
-            // Validaciones con Class Validator
             const errors = await validate(empresa, { validationError: { target: false, value: false } });
             if (errors.length > 0) {
-                return resp.status(400).json(errors);
+                return res.status(400).json(errors);
             }
 
-            // Guardar la empresa en la base de datos
-            await empresaRepository.save(empresa);
-
-            return resp.status(200).json("EMPRESA GUARDADA CORRECTAMENTE");
+            await repoEmpresa.save(empresa);
         } catch (error) {
-            return resp.status(400).json({ message: "Error al guardar la empresa." });
+            return res.status(400).json({ message: "Error al guardar." });
         }
+        return res.status(200).json("Empresa guardada correctamente.");
     }
 
-    static getOne = async (req: Request, resp: Response) => {
+    static getOne = async (req: Request, res: Response) => {
         try {
             const id_empresa = req.params['id_empresa'];
-
-            if (!id_empresa) {
-                return resp.status(400).json({ message: "Debe indicar el ID de la empresa" });
+            const repo = AppDataSource.getRepository(Empresa);
+    
+            try {
+                const empresa = await repo.findOneOrFail({
+                    where: { id_empresa, estado: true },
+                    relations: { puestos: true }
+                });
+    
+                // Filtrar los puestos que tienen estado verdadero
+                empresa.puestos = empresa.puestos.filter(puesto => puesto.estado);
+    
+                return res.status(200).json(empresa);
+            } catch (error) {
+                return res.status(404).json({ message: "La empresa con el ID indicado no existe en la base de datos." });
             }
+        } catch (error) {
+            return res.status(404).json({ message: "La empresa con el ID indicado no existe en la base de datos." });
+        }
+    }
+    
 
+    static update = async (req: Request, res: Response) => {
+        const { nombre, url, telefono, direccion, contraseña, estado } = req.body;
+
+        try {
+            const id_empresa = req.params['id_empresa'];
             const repo = AppDataSource.getRepository(Empresa);
 
+            let empresa;
             try {
-                const empresa = await repo.findOneOrFail({ where: { id_empresa } });
-
-                return resp.status(200).json(empresa);
+                empresa = await repo.findOneOrFail({ where: { id_empresa } });
             } catch (error) {
-                return resp.status(404).json({ message: "La empresa no existe en la base de datos" });
+                return res.status(404).json({ message: "La empresa con el ID indicado no existe en la base de datos." });
             }
 
+            // Actualiza los campos de la empresa
+            empresa.nombre = nombre;
+            empresa.url = url;
+            empresa.telefono = telefono;
+            empresa.direccion = direccion;
+            empresa.contraseña = contraseña;
+            // Actualiza el estado de la empresa
+            empresa.estado = estado !== undefined ? estado : empresa.estado;
+
+            // Validación de datos
+            const errors = await validate(empresa, { validationError: { target: false, value: false } });
+            if (errors.length > 0) {
+                return res.status(400).json(errors);
+            }
+
+            // Guarda la empresa actualizada
+            await repo.save(empresa);
+            return res.status(200).json({ message: "La empresa ha sido modificada." });
+
         } catch (error) {
-            return resp.status(500).json({ message: "Error interno del servidor" });
+            return res.status(404).json({ message: "Error al actualizar la empresa." });
         }
     }
 
+    static delete = async (req: Request, res: Response) => {
+        try {
+            const id_empresa = req.params['id_empresa'];
+            const repo = AppDataSource.getRepository(Empresa);
+
+            let empresa;
+            try {
+                empresa = await repo.findOneOrFail({ where: { id_empresa } });
+            } catch (error) {
+                return res.status(404).json({ message: "La empresa con el ID indicado no existe en la base de datos." });
+            }
+
+            empresa.estado = false;
+            await repo.save(empresa);
+            return res.status(200).json({ message: "La empresa ha sido eliminada." });
+
+        } catch (error) {
+            return res.status(404).json({ message: "Error al eliminar la empresa." });
+        }
+    }
 }
 
-export default EmpresaController;
+export default EmpresasController;

@@ -28,6 +28,9 @@ export class Persona {
     @IsNotEmpty({message: 'Debe indicar una contraseña.'})
     contraseña: string;
 
+    @Column({default:1})
+    estado: boolean;
+
     @OneToMany(() => Certificado, certificado => certificado.persona)
     certificados:Certificado[];
 

@@ -27,6 +27,9 @@ export class Puesto {
     @IsNotEmpty({message: 'Por favor indicar los requisitos para este puesto.'})
     requisitos: string;
 
+    @Column({default:1})
+    estado: boolean;
+
     @ManyToOne(() => Empresa, empresa => empresa.puestos)
     empresa: Empresa;
 }

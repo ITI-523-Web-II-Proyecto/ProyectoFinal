@@ -24,6 +24,9 @@ export class Certificado {
     @IsNumber({}, {message: 'El año debe ser un número entero.'})
     año: number;
 
+    @Column({default:1})
+    estado: boolean;
+
     @ManyToOne(() => Persona, persona => persona.certificados)
     persona: Persona;
 }

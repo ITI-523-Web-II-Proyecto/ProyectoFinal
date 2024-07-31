@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
     port: 3306,
     username: "root",
     password: "root",
-    database: "test",
+    database: "api",
     synchronize: true,
     logging: false,
     entities: [Persona,Empresa,Certificado,Puesto],
