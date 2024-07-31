@@ -6,9 +6,9 @@ import puestos from "./puestos";
 
 const routes = Router();
 
-routes.use("/Empresa", empresa)
-routes.use("/Persona",persona)
-routes.use("/Certificado", certificados)
-routes.use("/Puesto",puestos)
+routes.use("/empresa", empresa)
+routes.use("/persona",persona)
+routes.use("/certificado", certificados)
+routes.use("/puesto",puestos)
 
 export default routes;
