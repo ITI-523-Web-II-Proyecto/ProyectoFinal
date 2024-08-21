@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+  
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="/src/assets/imgs/logo1.png" alt="">
+            </div>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a routerLink="/">Inicio</a></li>
+
+                        <li><a routerLink="/login">Iniciar Sesión</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="form">
+        <form id="enterpriseForm" class="sub-form">
+            <h1>Crear Empresa</h1>  
+
+            <label for="txtNomb">Nombre</label>
+            <input type="text" name="name" id="txtNomb" class="form-input"> 
+
+            <label for="txtUrl">URL</label>
+            <input type="text" name="url" id="txtUrl" class="form-input"> 
+
+            <label for="txtTelefono">Teléfono</label>
+            <input type="text" name="callcenter" id="txtTelefono" class="form-input"> 
+
+            <label for="txtDireccion">Dirección</label>
+            <input type="text" name="address" id="txtDireccion" class="form-input"> 
+            
+            <div class="btn">
+                <button type="submit" id="btnGuardar" class="hero-btn">Sign In</button>
+            </div>  
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

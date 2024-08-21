@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="/src/assets/imgs/logo1.png" alt="">
+            </div>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a routerLink="/signin">Registrarse</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="form">
+        <form id="loginForm" class="sub-form">
+            <h1>Iniciar Sesión</h1>
+            
+            <label for="nameInput">Nombre</label>
+            <input type="text" name="username" id="nameInput" class="form-input"> 
+
+            <label for="tokenInput">Contraseña</label>
+            <input type="password" name="password" id="tokenInput" class="form-input"> 
+
+            <div class="btn">
+                <button type="submit" class="hero-btn">Iniciar sesión</button>
+            </div>  
+
+            <div class="bottom-form">
+                <div class="no-account">¿No tienes una cuenta?</div>
+                <a routerLink="/signin" class="signup">Registrarse</a>
+            </div>
+        </form>
+    </div>    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

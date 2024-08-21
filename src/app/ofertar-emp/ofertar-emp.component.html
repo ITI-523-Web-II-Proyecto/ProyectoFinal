@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Ofertas de Empleo</title>
+   
+</head>
+<body>
+    <header>
+        <img src="/src/assets/imgs/logo1.png" alt="Logo" width="60">
+        <h1>Administrar Ofertas de Empleo</h1>
+        <nav>
+            <ul>
+                <li><a href="">Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Employment Offers Submission Form -->
+        <form id="jobForm" class="sub-form">
+        
+            <input type="text" id="titlejob" placeholder="Título del empleo" required>
+            <textarea id="description" placeholder="Descripción del empleo" required></textarea>
+            <input type="text" id="hiringtype" placeholder="Tipo de contratación" required>
+            <textarea id="requirements" placeholder="Requisitos del empleo" required></textarea>
+            <button type="submit">Guardar Oferta</button>
+        </form>
+        
+        
+        <div id="jobsList">
+            
+        </div>   
+    </main>
+
+    <footer>
+        <p>&copy; Universidad Técnica Nacional 2024</p>
+    </footer>
+    
+    
+</body>
+</html>
