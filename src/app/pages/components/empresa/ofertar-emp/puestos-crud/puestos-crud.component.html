@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{ isNew ? 'Crear Nueva Oferta' : 'Editar Oferta' }}</h2>
+<form [formGroup]="myForm" class="formulario"> <!-- Añadida la clase 'formulario' -->
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre del Puesto</mat-label>
+      <input matInput formControlName="nombrePuesto" placeholder="Nombre del puesto">
+      <mat-error *ngIf="myForm.get('nombrePuesto')?.invalid">Este campo es requerido y debe tener entre 3 y 30 caracteres.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion" placeholder="Descripción"></textarea>
+      <mat-error *ngIf="myForm.get('descripcion')?.invalid">Este campo es requerido.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tiempo de Contratación</mat-label>
+      <input matInput formControlName="tiempoContratacion" placeholder="Tiempo de contratación">
+      <mat-error *ngIf="myForm.get('tiempoContratacion')?.invalid">Este campo es requerido.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Requisitos</mat-label>
+      <textarea matInput formControlName="requisitos" placeholder="Requisitos"></textarea>
+      <mat-error *ngIf="myForm.get('requisitos')?.invalid">Este campo es requerido.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>ID de Empresa</mat-label>
+      <input matInput formControlName="empresaId" placeholder="ID de Empresa" readonly>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <!-- Envolver los botones en un contenedor con la clase definida para centrar -->
+  <mat-dialog-actions class="button-container">
+    <button mat-raised-button color="primary" [disabled]="!myForm.valid" (click)="onSave()" class="dialog-button primary-button">Guardar</button>
+    <button mat-raised-button color="warn" (click)="onCancel()" class="dialog-button">Cancelar</button>
+  </mat-dialog-actions>
+</form>

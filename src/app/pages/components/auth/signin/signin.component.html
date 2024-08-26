@@ -1,0 +1,43 @@
+<body>
+    <div class="container" id="container" [ngClass]="{'active': isActive}">
+        <div class="form-container sign-up">
+            <form [formGroup]="personalForm" (ngSubmit)="onSubmitPersonal()">
+                <h1>Crear Cuenta</h1>
+                <span>Crea tu cuenta Personal</span>
+                <input type="text" formControlName="id_persona" placeholder="Cédula">
+                <input type="text" formControlName="nombre" placeholder="Nombre">
+                <input type="email" formControlName="email" placeholder="Email">     
+                <input type="text" formControlName="telefono" placeholder="Teléfono"> 
+                <input type="password" formControlName="contraseña" placeholder="Contraseña">
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form [formGroup]="empresaForm" (ngSubmit)="onSubmitEmpresa()">
+                <h1>Crear Cuenta</h1>
+                <span>Crea tu cuenta como Empresa</span>
+                <input type="text" formControlName="id_empresa" placeholder="Identificador">
+                <input type="text" formControlName="nombre" placeholder="Nombre Empresa">
+                <input type="text" formControlName="url" placeholder="URL Empresa">
+                <input type="text" formControlName="telefono" placeholder="Teléfono">
+                <input type="text" formControlName="direccion" placeholder="Dirección">
+                <input type="password" formControlName="contraseña" placeholder="Contraseña">
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Cuenta Empresa</h1>
+                    <p>Puedes crear tu cuenta de Empresa</p>
+                    <button class="hidden" (click)="toggleLogin()">Preciona Aquí</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Cuenta Personal</h1>
+                    <p>Puedes crear tu cuenta Personal</p>
+                    <button class="hidden" (click)="toggleRegister()">Preciona Aquí</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

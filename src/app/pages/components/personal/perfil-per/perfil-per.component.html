@@ -1,0 +1,36 @@
+<header>
+    <img src="assets/imgs/logo1.png" alt="Logo" class="imgLogo">
+    <h1>Perfil de Persona</h1>
+    <nav>
+        <ul>
+            <li><a routerLink="/homePersonal">Salir</a></li> 
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="perfil-container">
+        <mat-card *ngIf="persona">
+            <mat-card-header>
+                <div mat-card-avatar class="persona-avatar"></div>
+                <mat-card-title>{{ persona.nombre }}</mat-card-title>
+                <mat-card-subtitle>{{ persona.email }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="assets/imgs/logo2.png" alt="Avatar" width="600"> 
+            <mat-card-content>
+                <p><strong>Contraseña:</strong> {{ contrasenaPer }}</p>
+                <p><strong>Teléfono:</strong> {{ persona.telefono }}</p>
+                <p><strong>Estado:</strong> {{ persona.estado ? 'Activo' : 'Inactivo' }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="editPersona()">Editar</button>
+                <button mat-raised-button color="warn" (click)="Delete()">Eliminar</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card *ngIf="!persona">
+            <mat-card-content>
+                <p>No se pudo cargar la información de la persona.</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</main>

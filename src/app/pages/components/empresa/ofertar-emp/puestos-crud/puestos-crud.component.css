@@ -1,0 +1,86 @@
+/* Estilo para centrar el formulario */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Estilo para el título del diálogo */
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #15318f;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para los campos del formulario */
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Mejora la apariencia de los inputs */
+input[matInput], textarea[matInput] {
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Estilo personalizado para los botones de acción */
+.mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+button[mat-button] {
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+button[mat-button].mat-primary {
+    background-color: #0862c9;
+    color: white;
+}
+
+button[mat-button].mat-primary:hover {
+    background-color: #065a92;
+}
+
+button[mat-button].mat-warn {
+    color: #065a92;
+    border: 1px solid #065a92;
+}
+
+/* Ajustes generales para centrar el contenido */
+.cdk-overlay-pane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.mat-dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Incrementa el ancho máximo */
+    width: 100%;
+    flex-direction: column;
+    padding: 20px; /* Añade padding para un mejor espacio interno */
+}
+
+.mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

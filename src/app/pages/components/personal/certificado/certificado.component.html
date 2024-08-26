@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+    <div class="form">
+        <h1>Ingresa tus certificados</h1>
+        <form [formGroup]="certificadoForm" (ngSubmit)="onsubmit()">
+            <input type="text" formControlName="id_certificado" placeholder="Identificador de certificación" required>
+            <textarea formControlName="descripcion" placeholder="Descripción del certificado" required></textarea>
+            <input type="text" formControlName="categoria" placeholder="Categoría" required>
+            <textarea formControlName="institucion" placeholder="Institución" required></textarea>
+            <input type="number" formControlName="año" placeholder="Año" required>
+            <input type="text" formControlName="persona" placeholder="Id de persona" required>
+            <button type="submit">Guardar Oferta</button>
+
+        </form>
+    </div>
+    
+</body>
+</html>
+   
+   

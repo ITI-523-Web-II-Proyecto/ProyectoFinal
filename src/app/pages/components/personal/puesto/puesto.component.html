@@ -1,0 +1,39 @@
+<header class="header">
+    <img src="assets/imgs/logo1.png" alt="Logo" width="60">
+    <h1>Ofertas de Empleo</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/homePersonal">Salir</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<table mat-table [dataSource] = "puesto" class="mat-elevation-z8">
+    <ng-container matColumnDef="nombrePuesto">
+        <th mat-header-cell *matHeaderCellDef> Puesto </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombrePuesto}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tiempoContratacion">
+        <th mat-header-cell *matHeaderCellDef> tiempo de Contratacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.tiempoContratacion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="requisitos">
+        <th mat-header-cell *matHeaderCellDef> requisitos </th>
+        <td mat-cell *matCellDef="let element"> {{element.requisitos}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="empresa">
+        <th mat-header-cell *matHeaderCellDef> empresa </th>
+        <td mat-cell *matCellDef="let element"> {{element.empresa.nombre}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

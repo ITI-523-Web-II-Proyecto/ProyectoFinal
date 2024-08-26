@@ -1,0 +1,121 @@
+/* Estilo para centrar el formulario */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para el título del diálogo */
+h1[mat-dialog-title] {
+    font-size: 24px;
+    font-weight: bold;
+    color: #15318f;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para los campos del formulario */
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Mejora la apariencia de los inputs */
+input[matInput] {
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Estilo personalizado para los botones de acción */
+.mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0;
+}
+
+button[mat-button] {
+    font-weight: bold;
+}
+
+button[mat-button]:first-child {
+    margin-right: 10px;
+}
+
+button[mat-button].mat-primary {
+    background-color: #0862c9;
+    color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+}
+
+button[mat-button].mat-primary:hover {
+    background-color: #065a92;
+}
+
+button[mat-button]:first-child {
+    color: #065a92;
+    border: 1px solid #065a92;
+    border-radius: 20px;
+    padding: 8px 16px;
+}
+
+/* Añadir un efecto de transición suave para los botones */
+button[mat-button] {
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Ajustes generales para centrar el contenido */
+.cdk-overlay-pane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.mat-dialog-container {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Estilo para centrar los botones */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 10px; /* Espacio entre los botones */
+    padding: 10px 0;
+}
+
+/* Estilo base para los botones del diálogo */
+.dialog-button {
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Estilo específico para el botón primario */
+.primary-button {
+    background-color: #0862c9;
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: #065a92;
+}
+
+/* Estilo para el botón de cancelar */
+.dialog-button:first-child {
+    color: #065a92;
+    border: 1px solid #065a92;
+}

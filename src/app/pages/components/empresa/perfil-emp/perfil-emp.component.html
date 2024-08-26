@@ -1,0 +1,37 @@
+<header>
+    <img src="assets/imgs/logo1.png" alt="Logo" class="imgLogo">
+    <h1>Perfil</h1>
+    <nav>
+        <ul>
+            <li><a routerLink="/homeEmpresa">Salir</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="perfil-container">
+        <mat-card *ngIf="empresa">
+            <mat-card-header>
+                <div mat-card-avatar class="empresa-logo"></div>
+                <mat-card-title>{{ empresa.nombre }}</mat-card-title>
+                <mat-card-subtitle>{{ empresa.url }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="assets/imgs/logo2.png" alt="ChoWork" width="600">
+            <mat-card-content>
+                <p><strong>Contraseña:</strong> {{ contrasenaEmp }}</p>
+                <p><strong>Teléfono:</strong> {{ empresa.telefono }}</p>
+                <p><strong>Dirección:</strong> {{ empresa.direccion }}</p>
+                <p><strong>Estado:</strong> {{ empresa.estado ? 'Activo' : 'Inactivo' }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="editEmpresa()">Editar</button>
+                <button mat-raised-button color="warn" (click)="Delete()">Eliminar</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card *ngIf="!empresa">
+            <mat-card-content>
+                <p>No se pudo cargar la información de la empresa.</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</main>
